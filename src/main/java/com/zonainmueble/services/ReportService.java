@@ -23,6 +23,8 @@ public class ReportService {
   public ReportResponse report(ReportRequest input, ReportType type) {
     // TODO Verificar si el usuario puede generar reportes
 
+    type = ReportType.INTEGRAL;
+
     byte[] pdf = reportsApiClient.report(input, type);
     String name = generateReportName();
     Map<String, String> metadata = getMetadata(input, type);

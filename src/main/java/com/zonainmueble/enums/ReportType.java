@@ -1,5 +1,5 @@
 package com.zonainmueble.enums;
 
 public enum ReportType {
-  BASICO, INTEGRAL
+  BASICO, INTEGRAL, MOVILIDAD, BIENESTAR, SERVICIOS, COMERCIAL, OTRO
 }
