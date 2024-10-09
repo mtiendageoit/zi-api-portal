@@ -25,7 +25,7 @@ public class ReportsApiClient {
   private String reportsApiKey;
 
   public byte[] report(ReportRequest input, ReportType type) {
-
+    log.info("Getting report from the reports api");
     String url = reportsApiUrl + "?type=" + type.name() + "&api_key=" + reportsApiKey;
 
     HttpHeaders headers = new HttpHeaders();

@@ -1,8 +1,10 @@
 package com.zonainmueble.services;
 
 import java.io.ByteArrayInputStream;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import com.azure.storage.blob.BlobClientBuilder;
@@ -20,7 +22,9 @@ public class StorageService {
   @Value("${azure.storage.connection-string}")
   private String connectionString;
 
-  public String storePDF(byte[] fileContent, String name) {
+  public String storePDF(byte[] fileContent, String name, @Nullable Map<String, String> metadata) {
+    log.info("Saving report in storage");
+
     try {
       BlobClientBuilder builder = new BlobClientBuilder()
           .connectionString(connectionString)
@@ -35,6 +39,11 @@ public class StorageService {
           true);
 
       builder.buildClient().setHttpHeaders(headers);
+
+      if (metadata != null && !metadata.isEmpty()) {
+        builder.buildClient().setMetadata(metadata);
+      }
+
       return builder.buildClient().getBlobUrl();
 
     } catch (Exception e) {
