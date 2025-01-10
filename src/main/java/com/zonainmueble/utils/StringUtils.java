@@ -13,4 +13,8 @@ public class StringUtils {
     byte[] bytes = input.getBytes(StandardCharsets.UTF_8);
     return new String(bytes, StandardCharsets.UTF_8);
   }
+
+  public static String sanitizedUTF8(String input) {
+    return toUTF8(input.replaceAll("[^a-zA-Z0-9-]", ""));
+  }
 }

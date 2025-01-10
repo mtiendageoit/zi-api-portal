@@ -42,7 +42,7 @@ public class ReportService {
   private Map<String, String> getMetadata(ReportRequest input, ReportType type) {
     Map<String, String> metadata = new HashMap<>();
 
-    String address = StringUtils.toUTF8(StringUtils.removeAccents(input.getAddress()));
+    String address = StringUtils.sanitizedUTF8(StringUtils.removeAccents(input.getAddress()));
 
     metadata.put("address", address);
     metadata.put("longitude", input.getLongitude().toString());
